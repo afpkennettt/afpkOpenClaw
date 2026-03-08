@@ -1,0 +1,24 @@
+{
+  "name": "OpenClaw Secure Volume Dev",
+  "image": "mcr.microsoft.com/devcontainers/javascript-node:22",
+  "remoteUser": "node",
+  "workspaceFolder": "/workspace/openclaw",
+  "workspaceMount": "source=openclaw_dev_workspace,target=/workspace,type=volume",
+  "mounts": [
+    "source=openclaw_dev_home,target=/home/node,type=volume"
+  ],
+  "postCreateCommand": "bash -lc 'if [ ! -d /workspace/openclaw/.git ]; then git clone https://github.com/openclaw/openclaw.git /workspace/openclaw; fi && cd /workspace/openclaw && corepack enable && pnpm install'",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "dbaeumer.vscode-eslint",
+        "esbenp.prettier-vscode",
+        "ms-vscode.vscode-typescript-next"
+      ],
+      "settings": {
+        "terminal.integrated.defaultProfile.linux": "bash",
+        "typescript.tsdk": "/workspace/openclaw/node_modules/typescript/lib"
+      }
+    }
+  }
+}
